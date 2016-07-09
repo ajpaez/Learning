@@ -1,0 +1,42 @@
+package apr.learning.pattern.info;
+
+Fuente: 	https://www.javacodegeeks.com/2015/09/java-design-patterns.html
+
+#1 - Categorización de patrones
+	#1.1 - Patrones de creación
+	Son usados para diseñar el proceso de instanciación de objetos. Un patrón creacional usa la herencia para variar la creación de objetos.
+	Todos ellos encapsulan el conocimiento sobre que clases concretas usa el sistema y ocultan la creación y puesta en común de todas las instancias de estas clases.
+	Todo el sistema tiene conocimiento en general es sus interfaces según están definidas en clases abstractas.
+	En consecuencia, estos patrones aportan gran flexibilidad en lo que se creó, quien lo creó, como se creó y cuando.
+		Abstract Factory;Builder;Factory Method;Prototype;Singleton
+	#1.2 - Patrones estructurales
+	Estos patrones de refieren a como las clases y objetos se componen para formar estructuras más grandes.
+	Los patrones estructurales de clase usan la herencia para componer interfaces o implementaciones, como puede ser la herencia múltiple, al mezclar dos o más clases en una,
+	el resultado es una clase que combina las propiedades de sus clases padre. Este patrón es particularmente útil para hacer bibliotecas de clases desarrollados independientemente
+	para que trabajen juntas.
+	En lugar de preparar las interfaces o implementaciones, los patrones de objetos estructurales describen las maneras de componen objetos para darse cuenta de la nueva funcionalidad.
+	La flexibilidad de la composición del objeto proviene de la capacidad de cambiar la composición en tiempo de ejecución, lo cual es imposible con la composición de clases estáticas.
+		Adapter;Builder;Composite;Decorator;Façade;Flyweight;Proxy
+	#1.3 - Patrones de comportamiento
+	Los patrones de comportamiento se refieren a los algoritmos y a la asignación de responsabilidades entre objetos. Estos patrones no solo describen los patrones de los objetos o clases, 
+	sino también los patrones de comunicación entre ellos. Estos patrones caracterizan el flujo de control complejo difícil de seguir en tiempo de ejecución. En estos patrones se usa la 
+	composición de objetos en lugar de la herencia.  Algunos describen cómo un grupo de objetos pares cooperan para realizar una tarea que ningún objeto solo puede llevar a cabo por sí mismo.
+	Para evitar el acoplamiento entre objetos, por el traspaso de información, se define la figura del mediador que es el encargado de proporcionar el direccionamiento indirecto necesario 
+	para la perder dicho acoplamiento.
+		Chain of Responsibility;Command;Interpreter;Iterator;Mediator;Memento;Observer;State;Strategy;Template Method;Visitor
+	
+
+	
+
+Creational Patterns		Structural Patterns		Behavioral Patterns
+Abstract Factory		Adapter					Chain of Responsibility
+Builder					Bridge					Command
+Factory Method			Composite				Interpreter
+Prototype				Decorator				Iterator
+Singleton				Façade					Mediator
+						Flyweight				Memento
+						Proxy					Observer
+												State
+												Strategy
+												Template Method
+												Visitor

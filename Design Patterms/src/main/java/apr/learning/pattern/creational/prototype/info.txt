@@ -1,0 +1,34 @@
+package apr.learning.pattern.prototype.info;
+
+-------- PROTOTYPE PATTERN --------
+
+#1- Intro
+A grandes rasgos, ayuda en la creacion de objetos pesados en construccion, ya que crea uno y luego lo copia.
+
+El patron prototipo se usa para especificar los tipos de objetos que se crearan usando una instancia prototipica y crear nuevos objetos copiando este prototipo.
+El concepto consiste en copiar un objeto existente en lugar de crear una nueva instanciadede cero (la cual incluye operaciones costosas). El objeto existente actua
+como prototipo y contiene el estado del objeto. El nuevo objeto copia puede cambiar alguna de sus propiedades solo si es necesario. Este metodo ahorra recursos
+costosos y tiempo, especialmente cuando la creacion de objetos es muy pesada.
+
+En Java, hay ciertas formas de copiar un objeto con el fin de crear uno nuevo. Una forma de lograr esto es usar la interfaz Cloneable. Java provee el metodo clone, 
+heredado de la clase Objects. Tu necesitas implementar la interfaz Clonable y sobreescribir el metodo clone de acuerdo a tus necesidades.
+
+#2- Actores
+	-Prototype: 
+		Declara la interfaz que se pordrá clonar
+	-ConcretePrototype: 
+		Implementa una operacion para la clonacion en si.
+	-Client: 
+		Crea un nuevo objeto al preguntar a prototype para clonar en si.
+	
+Los prototipos permiten incorporar nuevas clases de productos concretos en un sistema mediante el simple registro de una instancia prototipica con el cliente.
+
+#3- Cuando usar el patron
+	- Use  el patron prototipo cuando un sistema deba ser independiente de la forma
+		en que sus productos son creados, compuestos y representados.
+	- Cuando las clases a instanciar se especifiquen en tiempo de ejecucion, por ejemplo,
+		para la carga dinamica.
+	- Cuando instancias de una clase puedan tener un solo estado de unos pocos diferentes.
+		Pueda que sea mas conveniente instalar un numero correspondiente de prototipos
+		y clonarlos en lugar de crear las instancias de la clase de forma manual cada vez que
+		con el estado apropiado.

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="apr.learning.pattern.behavioral.template.OracleTxtCon" project="Design Patterms" 
+    file="/Design Patterms/src/main/java/apr/learning/pattern/behavioral/template/OracleTxtCon.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="175" x="146" y="469"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="apr.learning.pattern.behavioral.template.ConnectionTemplate" 
+    project="Design Patterms" 
+    file="/Design Patterms/src/main/java/apr/learning/pattern/behavioral/template/ConnectionTemplate.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="175" x="146" y="132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="apr.learning.pattern.behavioral.template.TestTemplatePattern" 
+    project="Design Patterms" 
+    file="/Design Patterms/src/main/java/apr/learning/pattern/behavioral/template/TestTemplatePattern.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="175" x="361" y="132"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="apr.learning.pattern.behavioral.template.MySqLCSVCon" project="Design Patterms" 
+    file="/Design Patterms/src/main/java/apr/learning/pattern/behavioral/template/MySqLCSVCon.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="175" x="361" y="469"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="5">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="6">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
