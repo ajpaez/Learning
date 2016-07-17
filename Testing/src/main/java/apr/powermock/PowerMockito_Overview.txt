@@ -27,10 +27,11 @@ esperado ( p.e. times(), anyInt()). Todos los usos requieren de las anotaciones 
 @RunWith(PowerMockRunner.class) y @PrepareForTest.
  
 2. Mocking
-Mockito es una forma de testear la funcionalidad de una clase de forma aislada. Los objetos mock
-hacen el mocking de los servicios reales. Un objeto mock devuelve los datos dummy correspondientes
-para las peticiones de entrada pasadas. Para entender como funciona PowerMockito primero hay que
-conocer algunos términos usados en estos framewroks.
+Mocking es una tecnica de testing donde los componentes reales se sustituyen con objetos 
+que tienen un comportamiento prefijado (objetos mock) solo para los tests que se han creado. 
+Los objetos mock hacen el mocking de los servicios reales. Un objeto mock devuelve los datos 
+dummy correspondientes para las peticiones de entrada pasadas. Para entender como funciona 
+PowerMockito primero hay que conocer algunos términos usados en estos framewroks.
 	-Clase stub: es una implementacion parcial para una interdaz o clase con el proposito de usar
 	una instancia de esta clase stub durante el testeo. Las clases stubs por lo general no respondes
 	a nada mas de lo que estan programadas para el test. Stubs tambien pueden registrar informacion
@@ -38,7 +39,9 @@ conocer algunos términos usados en estos framewroks.
 	-Objetos mocks: es una implementacion dummy para una interfaz o una clase en la que se define la 
 	salida de ciertas llamadas a metodos. Puedes crear estos objetos mocks de forma manual  o usar
 	framworks para mock que simulen estas clases. Estos framework permiten crear objetos mock en
-	tiempo de ejecucion y definir su comportamiento.
+	tiempo de ejecucion y definir su comportamiento.Un objeto mock, es un objeto que está 
+	configurados para devolver una salida especifica para una entrada especifica, sin realizar 
+	ninguna acccion real.
 
 3. Diferencias entre Mockito y PowerMock
 - Mockito no incluye mock para caracteristicas especificas del lenguaje como constructores o metodos 
@@ -76,3 +79,5 @@ un mock, la prueba debe declarar, usando el framework, qué métodos y cómo deb
 llamados para que este comportamiento se verifique por completo. De lo contrario, 
 la prueba falla con una excepción "UnexpectedBehavior" (comportamiento inesperado). 
 
+
+FUENTE --> https://examples.javacodegeeks.com/core-java/powermockito/powermockito-tutorial-beginners/
