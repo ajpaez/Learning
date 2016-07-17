@@ -1,0 +1,78 @@
+---------------- POWERMOCK ---------------- 
+
+1. Introduction
+Mockito es un framework que se puede usar en conjuncion con JUnit. Mockito permite crear
+y configurar objetos mock. Usando mockito se simplifica de manera significativa el
+desarrollo de test para clases con dependencias externas. Podemos crear objetos mock de forma
+manual o usar herramientas como Mockito, EasyMokc o jMock. Estas herramientas nos permiten
+crear objetos simulados en tiempo de ejecucion y definir su comportamiento. El ejemplo clásico
+de un objeto mock es un proveedor de datos. En produccion una base de datos real es usada, pero
+para testing un objeto mock simula la base de datos y se asegura que las condiciones de los test
+son siempre las mismas.
+
+PowerMock es un framework que extiende otras librerias para mock como EasyMock con capacidades
+mas pontentes. PowerMock usa un classloader personalizado y la manipulacion de codigo para permitir
+hacer mock sobre metodos estaticos, constructores, clases y metodos finales, metodos privados,
+eliminacion de codigo estatico y mucho mas. Mediante el uso de un classloader personalizado no
+se necesitan hacer cambios en el IDE o en el servidor de integracion continua que simplifiquen
+la adopcion. Actualmente PowerMock soporta EasyMock y Mockito.
+
+A menudo cuando se escriben pruebas unitarias estas son utiles para la derivacion de la
+encapsulacion y por tando PowerMock incluye varias caracteristicas que simplifican la reflexion 
+especialmente utiles para testing. Esto permite un facil acceso al estado interno, ademas, 
+de una simplificacion parcial y privada del mocking. PowerMock proporciona una clase llamada
+PowerMockito para la creacion de objetos/clases mock y el inicio de la verificacion y el resultado
+esperado, para todo lo demas se puede seguir usando Mockito para confiurar y verificar lo
+esperado ( p.e. times(), anyInt()). Todos los usos requieren de las anotaciones a nivel de clase
+@RunWith(PowerMockRunner.class) y @PrepareForTest.
+ 
+2. Mocking
+Mockito es una forma de testear la funcionalidad de una clase de forma aislada. Los objetos mock
+hacen el mocking de los servicios reales. Un objeto mock devuelve los datos dummy correspondientes
+para las peticiones de entrada pasadas. Para entender como funciona PowerMockito primero hay que
+conocer algunos términos usados en estos framewroks.
+	-Clase stub: es una implementacion parcial para una interdaz o clase con el proposito de usar
+	una instancia de esta clase stub durante el testeo. Las clases stubs por lo general no respondes
+	a nada mas de lo que estan programadas para el test. Stubs tambien pueden registrar informacion
+	sobre las llamadas.
+	-Objetos mocks: es una implementacion dummy para una interfaz o una clase en la que se define la 
+	salida de ciertas llamadas a metodos. Puedes crear estos objetos mocks de forma manual  o usar
+	framworks para mock que simulen estas clases. Estos framework permiten crear objetos mock en
+	tiempo de ejecucion y definir su comportamiento.
+
+3. Diferencias entre Mockito y PowerMock
+- Mockito no incluye mock para caracteristicas especificas del lenguaje como constructores o metodos 
+estaticos mientras que PowerMock si.
+- Mockito no requiere anotacion @RunWith ni clase test base, mientras que la realizacion test con
+PowerMock requiere de ambas.
+- Mockito no soporta el mocking de constructores  mientras que PowerMock soporta el mock de constructores
+y metodos: final, static, native y private.
+
+4. Tipos de objetos en TDD (Recordatorio)
+DUMMY.
+Es una implementación donde el cuerpo de los métodos están vacíos (un dummy object 
+no hace nada). Se emplean cuando sólo se requiere un objeto de este tipo en el 
+contexto de prueba pero no hay ninguna interacción con dicho objeto durante la 
+ejecución de la prueba.
+
+STUB.
+Un stub es un dummy (el cuerpo de los métodos están vacíos) pero al menos alguno 
+de sus métodos devuelven valores esperados por la prueba (durante la prueba se 
+interactúa con el doble de prueba para obtener algún valor). Se emplean cuando se 
+necesita ejercitar una ruta de ejecución asociada a una estructura condicional que
+depende de los valores devueltos por un colaborador.
+
+SPY. 
+Un spy es un stub (algunos de sus métodos devuelven valores esperados por la prueba 
+para dirigir el flujo de ejecución a una sección de interés para la prueba) pero 
+también recuerdan detalles relacionados a las llamadas a sus métodos que luego pueden
+ser reportados a la prueba para su verificación (si el método fue llamado, cuantas 
+veces se llamó, con qué argumentos, etc.).
+
+MOCK
+Además de lo que hacen los stubs y spies, es más estricto en la especificación del 
+comportamiento esperado del sistema a probar. Antes de llamar a cualquier método en 
+un mock, la prueba debe declarar, usando el framework, qué métodos y cómo deben ser 
+llamados para que este comportamiento se verifique por completo. De lo contrario, 
+la prueba falla con una excepción "UnexpectedBehavior" (comportamiento inesperado). 
+
