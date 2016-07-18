@@ -33,7 +33,7 @@ public class AuthenticatorImplTest {
 	private AuthenticatorImpl authenticatorImpl;
 
 	@Test
-	public void testAuthenticate() throws EmptyCredentialsException {
+	public void testAuthenticateUserFail_OK() throws EmptyCredentialsException {
 		Authenticator authenticatorMock;
 		AuthenticatorImpl authenticatorImpl;
 		String username = "JavaCodeGeeks";
@@ -67,7 +67,7 @@ public class AuthenticatorImplTest {
 	}
 
 	@Test
-	public void testAuthenticate2CheckOrder() throws EmptyCredentialsException, InterruptedException {
+	public void testAuthenticate2_Fail_OK_CheckOrder() throws EmptyCredentialsException, InterruptedException {
 		Authenticator authenticatorMock;
 		AuthenticatorImpl authenticatorImpl;
 		String username = "JavaCodeGeeks";
@@ -78,7 +78,7 @@ public class AuthenticatorImplTest {
 
 		Mockito.when(authenticatorMock.authenticateUser(username, password)).thenReturn(false);
 
-		boolean actual = authenticatorImpl.authenticate2(username, password);
+		boolean actual = authenticatorImpl.foo_Authenticate(username, password);
 
 		Assert.assertFalse(actual);
 
@@ -92,7 +92,7 @@ public class AuthenticatorImplTest {
 	}
 
 	@Test(expected = EmptyCredentialsException.class)
-	public void testAuthenticateEmptyCredentialsException() throws EmptyCredentialsException {
+	public void testAuthenticateEmptyCredentialsException_KO() throws EmptyCredentialsException {
 		Authenticator authenticatorMock;
 		AuthenticatorImpl authenticatorImpl;
 
@@ -105,7 +105,7 @@ public class AuthenticatorImplTest {
 	}
 	
 	@Test
-	public void testAuthenticateMockInjection() throws EmptyCredentialsException {
+	public void testAuthenticate_OK_MockInjection() throws EmptyCredentialsException {
 	    String username = "javacodegeeks";
 	    String password = "s4f3 p4ssw0rd";
 

@@ -3,6 +3,11 @@ package apr.mockito.service;
 import apr.mockito.service.exception.EmptyCredentialsException;
 import apr.mockito.service.exception.NotAuthenticatedException;
 
+/**
+ * objeto que se usara para hacer mock sobre el
+ * @author Antonio
+ *
+ */
 public interface Authenticator {
 
 	/**

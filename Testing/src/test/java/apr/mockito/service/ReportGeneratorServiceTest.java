@@ -45,7 +45,7 @@ public class ReportGeneratorServiceTest {
 
 	@SuppressWarnings("deprecation")
 	@Test
-	public void reportGeneratorTest() {
+	public void reportGenerator_ArgumentCaptor_Test() {
 		Calendar startDate = Calendar.getInstance();
 		startDate.set(2016, 11, 25);
 		Calendar endDate = Calendar.getInstance();
@@ -69,7 +69,7 @@ public class ReportGeneratorServiceTest {
 	}
 	
 	@Test
-	public void argumentCaptorAllValuesTest() {
+	public void argumentCaptorAllValuesTest_OK() {
 		
 		stack.add("Java Code Geeks");
 		stack.add("Mockito");

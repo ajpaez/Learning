@@ -5,6 +5,9 @@ import apr.mockito.service.exception.NotAuthenticatedException;
 
 public class AuthenticatorImpl {
 
+	/**
+	 * objeto que usa AuthenticatorImpl para hacer uso de mock
+	 */
 	private Authenticator authenticator;
 
 	/**
@@ -36,7 +39,7 @@ public class AuthenticatorImpl {
 		return authenticated;
 	}
 
-	public boolean authenticate2(String username, String password) throws EmptyCredentialsException, InterruptedException {
+	public boolean foo_Authenticate(String username, String password) throws EmptyCredentialsException, InterruptedException {
 		boolean authenticated;
 
 		this.authenticator.foo();
