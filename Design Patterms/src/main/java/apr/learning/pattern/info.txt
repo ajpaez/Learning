@@ -24,7 +24,14 @@ Fuente: 	https://www.javacodegeeks.com/2015/09/java-design-patterns.html
 	Para evitar el acoplamiento entre objetos, por el traspaso de información, se define la figura del mediador que es el encargado de proporcionar el direccionamiento indirecto necesario 
 	para la perder dicho acoplamiento.
 		Chain of Responsibility;Command;Interpreter;Iterator;Mediator;Memento;Observer;State;Strategy;Template Method;Visitor
-	
+	#1.4 - Patrones de arquitectura
+	Un patrón de arquitectura es una solución general y reutilizable a un problema que ocurre comúnmente en arquitectura de software dentro de un contexto dado. 
+	Los patrones arquitectónicos son similares a los patrones de diseño de software, pero tienen un alcance más amplio. Los patrones arquitectónicos abordar diversas cuestiones 
+	en la ingeniería de software, tales como las limitaciones de rendimiento de hardware de computadora, la alta disponibilidad y la reducción al mínimo de los riesgos empresariales. 
+	Algunos patrones arquitectónicos se han implementado dentro de framworks. A pesar de que un patrón arquitectónico transmite una imagen de un sistema, no es una arquitectura. 
+	Un patrón de arquitectura es un concepto que resuelve y esboza algunos elementos de cohesión esenciales en una arquitectura de software. Innumerables arquitecturas diferentes pueden 
+	aplicar el mismo patrón y compartir las características relacionadas. Los patrones se definen a menudo como "estrictamente descrito y comúnmente disponible".Cuando son descrioto
+	estrictamente y comúnmente disponibles, son un patrón.
 
 	
 
