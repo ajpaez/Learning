@@ -37,3 +37,5 @@ DAO actúa como un adaptador entre el componente y la fuente de datos.
 	- Gestionar las conexiones a la fuente de datos.
 	- Obtener los datos almacenados.
 
+
+FUENTE : http://www.oracle.com/technetwork/java/dataaccessobject-138824.html
