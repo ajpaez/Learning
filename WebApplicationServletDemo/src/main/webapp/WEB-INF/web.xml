@@ -1,0 +1,78 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Archetype Created Web Application</display-name>
+
+	<filter>
+		<filter-name>FilterDemo</filter-name>
+		<display-name>FilterDemo</display-name>
+		<description></description>
+		<filter-class>apr.servlets.filters.FilterDemo</filter-class>
+		<init-param>
+			<param-name>newParam</param-name>
+			<param-value>valueOne</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>FilterDemo</filter-name>
+		<url-pattern>/ServletDemo</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>ServletDemo</servlet-name>
+		<display-name>ServletDemo</display-name>
+		<description></description>
+		<servlet-class>apr.servlets.ServletDemo</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ServletSession</servlet-name>
+		<display-name>ServletSession</display-name>
+		<description></description>
+		<servlet-class>apr.servlets.ServletSession</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>HandlerClass</servlet-name>
+		<display-name>HandlerClass</display-name>
+		<description></description>
+		<servlet-class>apr.servlets.HandlerClass</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ServletLocale</servlet-name>
+		<display-name>ServletLocale</display-name>
+		<description></description>
+		<servlet-class>apr.servlets.ServletLocale</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletDemo</servlet-name>
+		<url-pattern>/ServletDemo</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletSession</servlet-name>
+		<url-pattern>/ServletSession</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>HandlerClass</servlet-name>
+		<url-pattern>/HandlerClass</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletLocale</servlet-name>
+		<url-pattern>/ServletLocale</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>
+			index.jsp
+		</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/HandlerClass</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.io.IOException</exception-type>
+		<location>/HandlerClass</location>
+	</error-page>
+</web-app>
