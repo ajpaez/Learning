@@ -1,0 +1,150 @@
+
+FUENTE: https://www.javacodegeeks.com/2014/11/java-annotations-tutorial.html?utm_content=buffer8b63b&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
+1. ¿Por qué anotaciones?
+Las anotaciones fueron introducidas en la actualizacion de Java J2SE update 5 y la razon principal 
+fue proporcionar un mecanismo que permita a los programadores escribir metadas acerca
+de su codigo, directamente en su código.
+Antes de las  anotaciones, antes de las anotaciones, la forma en que los programadores
+describian su codigo no estaba estandarizado y cada desarrollador lo hacia de manera propia: usando palabras
+clave transient, por comentarios, con interfaces, etc. Esta no era una buena forma y una decision
+fue tomada: una nueva forma de metadas iba a estar disponible en Java y se introdujeron las anotaciones,
+ 
+2. Introduccion
+La mejor manera de explicar que es una anotacion es la palabra metadatos: datos que contienen informacion
+sobre si mismo. Las anotaciones son metadatos de codigo, contienen informacion sobre el codigo en si mismo.
+Las anotaciones pueden ser usadas dentro de paquetes, clases, metodos, variables y parametros. Desde Java 8
+las anoaciones se pueden colocar casi en cualquier lugar del codigo, estan son llamdas anotaciones de tipos.
+El codigo anotado no esta directamente afectado por las anotaciones, estas solo proporcionan informacion sobre
+el mismo a sistemas de terceros que pueden utilizarlas ( o no) para difirentes propositos.
+Las anotaciones son compiladas en los archivos de clases y pueden ser recuperadas en tiempo de ejecucion
+y son usadas con un proposito logico por el consumidor o productor.
+
+3. Consumidores
+Puede ser dificil entender el proposito de las anotaciones y como pueden ser usadas para, que no contengan 
+ningun tipo de logica funcional y que no afecten al codigo anotado, para que sirven?
+La explicacion a esto es lo que se conoce como consumidores de anotaciones. Se trata de sistemas
+o aplicacion que estan haciendo uso del codigo anotado y ejecutan direferentes acciones en funcion
+de la informacion de las anotaciones.
+Por ejemplo, en el caso de la construccion con anotaciones (anotaciones Meta) que salen proporciona
+el estandar de Java, el consumidor es la maquina virtual de java (JVM) que ejecuta el codigo anotado.
+Existen otros ejemplos, que veremos mas adelante, como pueden ser JUnit, donde el consumidor es el
+procesador de JUnit el que lee y analiza las clases de test anotadas, y decide por ejemplo, dependiendo
+de la anotacion, en que orden los test unitarios seran ejecutados o que metodos van a ser ejecutados
+antes o despues de cada prueba. 
+Los consumidores usan la reflecion en Java con el fin de leer y analizar el codigo fuente anotado.
+Los paquetes principales usados para este proposito son java.lang y java.lang.reflect.
+
+4. Sitaxis y elementos de las anotaciones
+Una anotaciones es declarada usando el caractes @ como prefijo del nombre de la anotacion. Esto le indica
+al conpilador que este elemento es una anotacion. Por ejemplo:
+
+	@Annotation
+	public void annotatedMehod() {
+		...
+ 	}
+ 	
+La anotacion declarada anterior se llama "Anotation" y esta anotando el metodo annotatedMethod().
+El compilador se hara cargo de ella.
+Una anotacion tiene elementos en forma de clave-valor. Estos "elementos" son las propiedades de la anotacion.
+
+	@Annotation(
+   		info = "I am an annotation",
+   		counter = "55"
+	)
+	public void annotatedMehod() {
+		...
+ 	}
+
+Si la anotacion contiene solo un elemento ( o si solo un elementos necesita ser especificado),
+puede hacerse así:
+
+	@Annotation("I am an annotation")
+	public void annotatedMehod() {
+		...
+ 	}
+ 	
+Las anotaciones proporcionadas por Java se llaman built annotations, las anotaciones
+definidas por el usuario se conocen como custom annotations.
+
+5. Donde pueden ser usadas.
+Las anotaciones pueden ser usadas basicamente en la mayoria de los elementod de los 
+programas de Java: clases, propiedades, metodos, paquetes, variables, etc.
+Desde Java 8 el concepto de anotacion por tipo esta disponible. Lo que permite:
+
+	@MyAnnotation String str = "danibuiza";
+
+6. Casos de uso.
+Las anotaciones se pueden utilizar para muchos propósitos diferentes, los más comunes son:
+ - Información para el compilador: Las anotaciones pueden ser usados ​​por el compilador 
+   para producir advertencias o incluso errores en base a diferentes reglas. Un ejemplo 
+   de este tipo de uso en Java 8 es la anotacion @FunctionalInterface. Ésta hace que el 
+   compilador valide la clase anotada y compruebe si se trata de una interfaz funcional 
+   correcta o no.
+ - Documentación: Las anotaciones pueden ser utilizados por otras aplicaciones para medir 
+  la calidad del código como FindBugs o PMD para crear o generar informes de forma automática
+  como Jenkins, Jira o TeamCity.
+ - Generación de código: anotaciones se pueden utilizar para generar código o ficheros XML
+   de forma automática usando la información de metadatos presente en el código. Un buen 
+   ejemplo de esto es la biblioteca JAXB.
+ - Procesamiento en tiempo de ejecución: las anotaciones que son examinadas en tiempo de 
+  ejecución se pueden utilizar para diferentes objetivos, como unidades de testing (Junit),
+  inyección de dependencias (Spring), validación, logging (Log4J), acceso a datos (Hibernate), etc.
+
+7. Built in annotations
+Java viene con un conjunto de anotaciones por defecto. Algunas de ellas son:
+
+ - @Retention: Esta anotacion anota otras anotacioens y es usada para indicar la forma de
+ 	almacenar la anotacion marcada. Es un tipo de anotacion Meta, ya que esta marcando 
+ 	la anotacion e informando sobre su naturaleza. Posibles valores:
+ 		- SOURCE: Indica que la anotacion sera ignorada por el compilador y JVM (no available at run time)
+ 		 y solo	se conserva en el fuente.
+ 		- CLASS: Indica que la anotaciones va a ser conservada por el compilador, pero ignorada
+ 		por la JVM y debido a esto no va a estar disponible en tiempo de ejecucion.
+ 		- RUNTIME: Significa que la anotacion va a ser conservada por la maquina virtual de Java
+ 		y se puede utilizar en tiempo de ejecucion a traves de la reflexion.
+ - @Retention: Esta anotacion restringe los elementos a los que una anotación se puede aplicar.
+   Sólo un tipo es posible. Tipos disponibles:
+		- ANNOTATION_TYPE significa que la anotación se puede aplicar a otra anotación.
+		- CONSTRUCTOR puede ser aplicado a un constructor.
+	 	- FIELD se puede aplicar a un campo o propiedad.
+		- LOCAL_VARIABLE se puede aplicar a una variable local.
+		- METHOD se puede aplicar a una anotación de nivel de método.
+		- PACKAGE puede ser aplicado a una declaración del paquete.
+		- PARAMETER se puede aplicar a los parámetros de un método.
+		- TYPE_PARAMETER se puede aplicar a los tipos de datos en los parametros (new concept in Java 8)
+		- TYPE se puede aplicar a cualquier elemento de una clase.
+		- TYPE_USE se puede aplicar a los tipos de datos (new concept in Java 8)
+ - @Documented: Los elementos anotados van a ser documentado mediante la herramienta Javadoc. 
+ 	Por defecto las anotaciones no están documentadas. Esta anotación se puede aplicar a otra anotación.
+ - @Inherited: Por defecto las anotaciones no son heredados por las subclases. Esta anotación marca 
+ 	una anotación para que sea heredada automáticamente por todas las subclases que se extienden de 
+ 	la clase anotada. Esta anotación se puede aplicar a elementos de la clase.
+ - @Deprecated: Indica que el elemento anotado no se debe utilizar. Esta anotación la obtiene el 
+ 	compilador para generar un mensaje de advertencia. Se puede aplicar a métodos, clases y campos. 
+ 	Una explicación acerca de por qué este elemento es obsoleto y usos alternativos debe ser proporcionada 
+ 	al utilizar esta anotación.
+ - @SuppressWarnings: Indica el compilador que no arroje advertencias por alguna razón o razones específicas.
+    Por ejemplo, si no queremos obtener advertencias debido a los métodos privados no utilizados podemos 
+    escribir algo como:
+    	
+    	@SuppressWarnings( "unused")
+		private String myNotUsedMethod(){
+			...
+		}
+
+	Normalmente el compilador producirá una advertencia si no se utiliza el metodo, el uso de esta
+	anotacion previene este comportamiento. Esta anotacion espera uno o mas parametros con las categorias
+	que deben evitarse.	
+ - @Override: Indica al compilador que el elemento está sobreescribiendo un elemento de la superclase.
+ 	Esta anotación no es obligatorio al sobreescribiendo elementos pero ayuda al compilador a que genere 
+ 	errores cuando la sobreescritura no se hace correctamente, por ejemplo, si los parámetros del método
+ 	de la subclase son diferentes a las súper clase, o si el tipo de retorno no coincide .
+ - @SafeVarargs: Afirma que el código del método o constructor no realiza operaciones inseguras en sus 
+ 	argumentos. Las futuras versiones del lenguaje Java harán que el compilador produzca un error en 
+ 	tiempo de compilación en caso de posibles operaciones inseguras durante el uso de esta anotación.
+ 	Para obtener más información acerca de éste uno http://docs.oracle.com/javase/7/docs/api/java/lang/SafeVarargs.html
+
+
+ 
+ 

@@ -1,0 +1,17 @@
+Herencia en anotaciones
+Las anotaciones pueden utilizar herencia en Java, esta herencia no tiene nada o casi nada 
+en común con lo que sabemos por herencia en un lenguaje de programación orientado a objetos.
+
+Si una anotación se marca como hereditario en Java, utilizando la anotación reservada
+@Inherited, indica que la clase que está anotada pasará esta anotación a sus subclases de 
+forma automática sin necesidad de declarar la anotación en las subclases.
+De manera predeterminada, una clase que se extiende un super clase no hereda 
+sus anotaciones. Esto es completamente en línea con el objetivo de anotaciones,
+que es proporcionar información sobre el código que están anotando y no 
+modificar su comportamiento. 
+
+La clase que implementa no heredan la anotación a pesar de que es una anotación hereda;
+sólo se aplica a las clases. Lo mismo sucede con los métodos, variables, paquetes, etc. 
+Sólo clases pueden utilizarse en conjunción con esta anotación.
+
+http://docs.oracle.com/javase/7/docs/api/java/lang/annotation/Inherited.html.
