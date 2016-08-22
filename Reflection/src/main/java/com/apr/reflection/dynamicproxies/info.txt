@@ -1,0 +1,12 @@
+19. Dynamic Proxies
+
+Los proxies dinámicos son clases que implementan interfaces especificadas en tiempo
+de ejecución, es decir, especificadas cuando la clase es creada. Podemos tener interfaces proxy,
+clases e instancias para cualquier tipo de elemento en java.
+Cada instancia de una clase proxy contiene un handler. El handler contiene la invocación
+de la llamada al método de la interfaz (https://docs.oracle.com/javase/7/docs/api/java/lang/reflect/InvocationHandler.html) que implementa
+
+Cuando una instancia proxy es usada para invocar a un método dado, este será remitido
+ al método del handler. El método (usando reflexión) y los 
+ argumentos esperados son pasados al método invoke del handler. El resultado de la
+ invocación original es devuelto como resultado de la invocación del hanlder.

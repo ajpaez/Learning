@@ -1,0 +1,37 @@
+3. Basics
+3.1. EntityManager (EM) and Persistence Unit (PU)
+Casi toda interacción con JPA se realiza a través del EntityManager. 
+Para obtener una instancia de un EntityManager, tenemos que crear una 
+instancia de la EntityManagerFactory. Normalmente sólo tenemos un 
+EntityManagerFactory por cada "unidad de persistencia" por aplicación. 
+Una unidad de persistencia es un conjunto de clases de JPA que se 
+gestionan conjuntamente con la configuración de la base de datos en 
+un archivo llamado persistence.xml (ubicado en src/main/resources/META_INF.
+
+Como se puede ver, se define una sola unidad de persistencia con el nombre PersistenceUnit, que
+tiene como  transaction-type = RESOURCE_LOCAL. El  transaction-type determina como son manejadas
+las transacciones por la aplicación. En nuestro ejemplo queremos manejarlas nosotros mismos,
+Cuando se usa un contenedor JEE, este es el encargado de crearel factory y un solo entitymanager.
+El contenedor maneja también el comienzo y el final de cada transacción. 
+
+Al establecer el proveedor como org.hibernate.ejb.HibernatePersistence seleccionamos la implementación JPA que queremos usar.
+Debido a que hemos incluido Hibernate como proveedor JPA en classpath mediante una dependencia 
+podemos hacer referencia a ella con el nombre de la clase.
+
+3.2. Transactions
+ El EntityManager representa la unidad de persistencia. Una unidad de persistencia es una cache para las 
+ entidades que representan los datos de la BD, así como la conexión a la BD, por tanto, toda
+ transacción deberá pasar por nuestro EntityManager.
+ Pero antes de que podamos hacer uso de los métodos del EM necesitamos abrir una transacción
+ 
+  EntityTransaction transaction = entityManager.getTransaction();
+  transaction.begin();
+  
+Si omitimos esta llamada, Hibernate arrojaría IllegalStateException que nos dice que nos hemos 
+olvidado ejecutar persist() dentro de una transacción. Después de realizar todas las operaciones
+nosotros tenemos que hacer commit la transacción: transaction.commit();
+
+
+
+  
+

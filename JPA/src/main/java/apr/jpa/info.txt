@@ -1,0 +1,70 @@
+
+JPA Tutorial:
+
+https://www.javacodegeeks.com/2015/02/jpa-tutorial.html
+
+Java Persistence API (JPA) es una interfaz de especificación de programación de aplicaciones
+para el lenguaje JAVA que describe la gestión de datos relacionales en aplicaciones 
+Java SE y Java EE.
+
+JPA se ha convertido en el estándar de facto para escribir aplicaciones que interactúan
+con bases de datos. 
+
+
+1. Introducción
+
+La API de persistencia JPA es una especificación independen diente del proveedor para el mapeo
+de objetos Java a las tablas de base de datos relaciones. Las implementaciones de estas
+especificaciones permiten a los desarrolladores abstraerse a partir de la base de datos especifica
+con la que trabajan y permite implementar las operaciones de un CRUD de tal manera
+que el código funciona en diferentes bases de datos. Este frameworks no es solo capaz de manejar
+el código que interactúa con la base de datos (código JDBC) sino que mapea los datos en estructuras
+de objetos usados por la aplicación.
+
+JPA consiste en tres componentes diferentes:
+	-Entities: En las versiones actuales de las entidades JPA son objetos Java (POJOs).
+	Versiones anteriores de JPA requerían subclases entites de las clases proporcionadas por JPA,
+	pero estos enfoques son más difíciles de testear porque tienen una fuerte dependencia con 
+	el frameworks, las nuevas versiones de JPA no requieren entities de subclases de cualquier framework.
+	-Object-relational metadata: El desarrollador debe proporcionar el mapeo entre las clases Java
+	y sus atributos de tablas y columnas de la base de datos. Esta puede hacerse a traves de los
+	ficheros de configuración dedicados a ello o en las nuevas versiones a traves de anotaciones.
+	-Java Persistence Query Languaje (JPQL): Lenguaje usado como SQL que proporciona el framework 
+	de forma abstracta. Esta traducción de JPQL a SQL permite que las implementaciones del framework 
+	soporta diferentes dialectos de base de datos y permite a los desarrolladores implementar 
+	consultas de manera independiente.
+	
+
+7. Criteria API
+Todos los ejemplos mostrados se han realizado mediante JPQL, pero existe una alternativa a esta,
+Criteria API. Esta API proporciona métodos nativos de JAVA para construir la consultas.	Para
+ello solo necesitamos obtener un objeto CriteriaBuilder de nuestro EntityManager y construir dicha
+query.
+En general, CriteriaQuery define las siguientes métodos:
+	-distinct(): especifica si la base de datos debe filtrar los valores duplicados.
+	-from(): especifica la tabla/entidad a la que haremos la consulta
+	-select(): Especifica una consulta de selección.
+	-multiselect(): Especifica una lista de select.
+	-where(): especifica la cláusula where de la consulta.
+	-orderBy(): especifica el orden de la consulta.
+	-groupby(): Especifica los grupos que se forman sobre el resultado.
+	-having(): Especifica restricciones para los grupos que se definen sobre el resultado.
+	-subquery(): Especifica una subconsulta que se puede utilizar en otras consultas.
+
+Los métodos anteriores permiten construir dinámicamente consultas sobre las restricciones
+proporcionadas
+
+8. Sequences
+Se usa para indicar la forma en la que se incrementaran los valores para los campos anotados con
+GeneratedValue. JPA puede manejar los siguientes métodos:
+	- TABLE: Esta estrategia permite al proveedor de JPA crear una tabla separada que contiene
+	en cada fila una entidad. Esta fila contiene el nombre de la entidad y el valor actual para su id.
+	Cada vez que es requerido un nuevo valor, dicha fila se actualiza en consecuencia.
+	- SEQUENCE: Si la BD proporciona una secuencia, este método solicita los valores únicos a la BD.
+		Como esta estrategia usa una tabla separada, es fácil que esta se convierta en un cuello de botella
+	cuando muchas peticiones son requeridas. Esto suele ocurrir cuando dicha tabla es usada en muchas 
+	tablas y la base de datos solo es compatible con bloqueos de tablas o bloqueos de páginas. 
+	En este caso, la base de datos tendrá que bloquear la tabla/pagina hasta que la transacción actual 
+	se haya commitieado. Para ello JPA permite definir un tamaño de estas pre-asignaciones de tal manera
+	que la base de datos no se preguntada con demasiada frecuencia.
+	- IDENTITY: si la base de datos proporciona columnas de identidad. Es un AUTO_INCREMENT.

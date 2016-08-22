@@ -1,0 +1,39 @@
+4. Inheritance
+
+No en todas las situaciones queremos tener una tabla con todos los diferentes tipos que queremos
+almacenar en nuestra BD (tener la clases y las subclases juntas en la misma tabla). Este es 
+especialmente el caso cuando diferentes tipos no tienen exactamente
+las mismas columnas. Para esto tenemos tres opciones disponibles:
+
+	- SINGLE_TABLE: Esta estrategia mapea todas las clases a una sola tabla. Como consecuencia 
+	cada fila tiene todas las columnas para todos los tipos que la base de datos necesita
+	almacenar, con estas columnas adicionales vacías. Por otro lado, esta estrategia trae la 
+	ventaja de que una consulta nunca tiene que utilizar JOIN y, por tanto, puede ser mucho
+	más rápido.
+	- JOINES: Esta estrategia crea para cada tipo una tabla separada. Cada tabla, por tanto, 
+	sólo contiene el estado de la entidad mapeada. Para cargar una sola entidad, el proveedor 
+	JPA tiene que cargar los datos de una entidad de todas las tablas en la que la entidad esta 
+	mapeada. Este enfoque reduce el espacio de almacenamiento, pero por otro lado introduce JOIN 
+	a las consultas que pueden disminuir la velocidad de consulta de manera significativa.
+	- TABLE_PER_CLASS: Al igual que la estrategia JOIN, esta estrategia crea una tabla separada 
+	para cada tipo de entidad. Sin embargo, a diferencia de JOIN estas tablas contienen toda 
+	la información necesaria para cargar esta entidad. Por lo tanto, las consultas JOIN no son 
+	necesarias para cargar estas entidades, pero por otro lado, introduce situaciones donde la 
+	subclase concreta no se conoce consultas SQL adicionales con el fin de determinarla.
+	
+5. Relationships
+Hasta ahora no hemos modelado las relaciones entre las diferentes entidades, excepto la 
+relación entre las subclases y su superclase. JPA ofrece diferentes relaciones entre 
+entidades/tablas que pueden ser modeladas:
+	- OneToOne: En esta relación cada entidad tiene exactamente una referencia a la otra entidad
+	 y viceversa.
+	- OneToMany/ManyToOne: En esta relación una entidad puede tener varias entidades hijas
+	 y cada entidad hijo pertenece a una entidad padre.
+	- ManyToMany: En esta relación múltiples entidades de un tipo puede tener múltiples 
+	referencias a entidades de otro tipo.
+	- Embedded: En esta relación la entidad hijo se almacena en la misma tabla que la entidad 
+	padre(es decir, tenemos dos ENTIDADES para una tabla).
+	- ElementCollection: Esta relación es similar a la relación OneToMany pero a diferencia de
+	ser una entidad referenciada es una entidad  embedded. Esto permite definir relaciones 
+	OneToMany a objetos simples que se almacenan con la relación "normal" Embedded en otra tabla.
+

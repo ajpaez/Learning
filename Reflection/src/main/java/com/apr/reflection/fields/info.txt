@@ -1,0 +1,10 @@
+Class Fields puede ser manejada en tiempo de ejecución mediante la reflexión y ofrece varios 
+métodos para acceder a sus campos en tiempo de ejecución. Los más importantes son:
+	- java.lang.Class.getDeclaredFields(): Devuelve un array con todos los campos declarados 
+	de la clase incluso los privados.
+	- java.lang.Class.getFields(): Devuelve un array con todos los campos accesibles de la clase.
+	- java.lang.Class.getField(String): Devuelve un campo accesible según el nombre pasado como parámetro. Se 
+	lanzará una excepción si el campo no existe o no es accesible.
+	- java.lang.Class.getDeclaredFields(String): Devuelve el campo según el nombre dado, si el campo no existe lanza una excepción.
+Estos métodos devuelven un array de elementos (o una sola) del tipo java.lang.reflect.Field. 
+Esta clase contiene varios métodos interesantes que se pueden utilizar en tiempo de ejecución y que permiten leer las propiedades y los valores del campo específico.

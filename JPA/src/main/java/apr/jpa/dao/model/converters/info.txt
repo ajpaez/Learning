@@ -1,0 +1,19 @@
+6. Data Types and Converters
+
+Cuando se trata de bases de datos heredadas puede suceder que el mapeo de datos estándar 
+proporcionado por JPA no sea suficiente. La siguiente tabla muestra los mapeos entre los
+tipos de Java y los diferentes tipos de BD:
+
+Java type																	|	Database type
+String (char, char[])														|	VARCHAR (CHAR, VARCHAR2, CLOB, TEXT)
+Number (BigDecimal, BigInteger, Integer, Double, Long, Float, Short, Byte)	|	NUMERIC (NUMBER, INT, LONG, FLOAT, DOUBLE)
+int, long, float, double, short, byte										|	NUMERIC (NUMBER, INT, LONG, FLOAT, DOUBLE)
+byte[]																		|	VARBINARY (BINARY, BLOB)
+boolean (Boolean)															|	BOOLEAN (BIT, SMALLINT, INT, NUMBER)
+java.util.Date, java.sql.Date, java.sql.Time, java.sql.Timestamp, 
+java.util.Calendar															|	TIMESTAMP (DATE, DATETIME)
+java.lang.Enum																|	NUMERIC (VARCHAR, CHAR)
+java.util.Serializable														|	VARBINARY (BINARY, BLOB)
+
+Puedes escribir tu propio convertidor. Esto se hace implementando la interfaz AttributeConverter
+y anotando la clase con @Converter.
