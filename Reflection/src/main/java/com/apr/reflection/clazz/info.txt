@@ -1,0 +1,5 @@
+5. Clases
+Todo en Java esta sobre las clases, así como la reflexión. Clases son el punto de partida
+cuando hablamos de reflexión. La clase java.lang.Class contiene varios métodos que permiten
+a los programadores obtener información sobre las clases y los objetos en tiempo de ejecución.
+

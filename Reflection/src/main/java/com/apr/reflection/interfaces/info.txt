@@ -1,0 +1,5 @@
+6. Interfaces
+Las interfaces son elementos que no se pueden instanciar y que contienen los métodos expuestos 
+que deben ser implementadas por quienes las implementen. Relacionados con la reflexión no hay nada especial en relación con las interfaces.
+Las interfaces pueden ser accedidos como una clase utilizando su nombre completo. 
+Todos los métodos disponibles para las clases están disponibles para las interfaces también. 

@@ -1,0 +1,91 @@
+1. Reflection
+El concepto de reflexión en software significa la capacidad para inspeccionar, analizar
+y modificar otro código en tiempo de ejecución. Por ejemplo, imagina una aplicación que
+tome como entrada algo fichero que contiene código fuente. El objetivo de la aplicación
+es contar el número de métodos que contiene en cada clase pasada. Esto se puede solucionar
+utilizando la reflexión mediante la canalización de código y contando los elementos que son 
+en realidad, métodos, ignorando otros elementos como atributos, interfaces, etc. y 
+agrupando por clases.
+
+Hablando estrictamente, este ejemplo no es realmente reflexión, porque el código no tiene
+que ser analizado en tiempo de ejecución y la tarea se puede realizar en cualquier otra
+etapa, pero también se puede hacer en tiempo de ejecución y entonces estaríamos hablando
+en realidad, de reflexión.
+
+Otro ejemplo podría ser una aplicación que analice el contenido de las clases dadas y
+ejecute los métodos que contienen una anotación especificada con algún argumento proporcionado
+en tiempo de ejecución: en el framework de JUnit podemos encontrar el ejemplo de la
+anotación @Test, esto es en realidad lo que hace JUnit para lanzar los test y lo hace
+mediante reflexión.
+
+2. Introducción a la reflexión en Java
+
+En Java, es posible inspeccionar campos, clases, métodos, anotaciones, interfaces, etc. en
+tiempo de ejecución. Tu no necesitas conocer cómo se llaman las clases o los métodos, ni
+los parámetros que necesitan, todos pueden recuperarse en tiempo de ejecución usando 
+reflexión. También es posible crear clases nuevas, para crear nuevas instancias y 
+ejecutar sus métodos, todo ello usando reflexión.
+
+La reflexión está presente en Java desde el comienzo de los tiempos a través de su API
+de reflexión. La clase class contiene todos los métodos relacionados con la reflexión
+que se pueden aplicar a las clases y objetos como los que permiten a un programador
+recuperar el nombre de la clase, sus métodos públicos, etc. Otras clases importantes
+son Method, Field y Type contienen métodos de reflexión específicos.
+
+Aunque la reflexión es muy útil en muchos escenarios, no debe ser utilizada para todo.
+Si alguna operación puede ser ejecutada sin usar reflexión, entonces no debemos usarla.
+Aquí algunas razones:
+
+- El rendimiento se ve afectado por el uso de la reflexión ya que todas las optimizaciones
+de compilación no se pueden aplicar: la reflexión se resuelve en tiempo de ejecución y no
+en las etapas de compilación.
+
+-  Vulnerabilidades de seguridad tienen que ser tomadas en consideración ya que el uso de
+la reflexión no puede ser posible cuando se ejecuta en contextos seguros como Applets.
+Otra desventaja importante, es el mantenimiento del código. Si el código utiliza la reflexión
+fuertemente va a ser difícil de mantener.
+
+- Las clases y métodos no están directamente expuestos en el código y pueden variar directamente
+así que puede ser difícil cambiar el número de parámetros que un método espera si el código
+que llama a ese método se invoca a través de la reflexión.
+
+- Herramientas como la refactorización automática de código o el analizador de código pueden
+tener problemas cuando está presente una gran cantidad de reflexión.
+
+
+3. Casos de uso
+
+A pesar de todas las limitaciones, la reflexión es una herramienta poderosa en Java que puede
+ser tomada en consideración en varios escenarios. En general, la reflexión puede utilizarse para
+observar y modificar el comportamiento de un programa en tiempo de ejecución.
+Sus usos más comunes son:
+
+- IDEs pueden hacer uso en gran medida de la reflexión con el fin de proporcionar soluciones
+para las características de autocompletado, tipado dinámico, estructuras de jerarquía, etc. Por
+ejemplo, IDEs como Eclipse o PHP Storm proporcionan un mecanismo para recuperar
+dinámicamente los argumentos esperados para un determinado método o lista de métodos públicos
+que comienzan por get para una instancia determinada. Todo esto se hace a través de reflexión.
+
+- Debuggers usan la reflexión para inspeccionar dinámicamente el código que está siendo ejecutado.
+
+- Herramientas de testing como JUnit o Mockito usan la reflexión con el fin de invocar métodos
+deseados que contienen una sintaxis especifica o clases, interfaces y métodos mock específicos.
+
+- Los framewroks de inyección de dependencias usan la reflexión para inyectar beans y properties
+en tiempo de ejecución e inicializar todo el contexto de la aplicación.
+
+- Herramientas de canalización de código como PMD o FindBugs usan la reflexión con el fin de 
+analizar el código con la lista de validaciones que tiene configurados.
+
+- Herramientas externas que hacen uso del código de forma dinámica pueden utilizar la reflexión también.
+
+4. Los componentes y mecanismos de reflexión
+Con el fin de empezar a programar y utilizar la reflexión en Java, primero tenemos que explicar un par de conceptos que pueden ser relevantes.
+- Dynamic Proxy: es una clase que implementa una lista de interfaces especificas en tiempo de
+ejecución. Usa la clase java.lang.reflect.Proxy. 
+- Class loader: es un objeto encargado de las clases de carga a partir del nombre de una clase.
+En Java, cada clase proporciona métodos que recuperan su class loader: class.getClassLoader().
+
+
+
+
