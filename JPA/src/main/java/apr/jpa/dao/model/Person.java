@@ -58,7 +58,7 @@ public class Person {
 	 * person.getIdCard (): @OneToOne(fetch = FetchType.LAZY)
 	 * 
 	 */
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_CARD_ID")
 	private IdCard idCard;
 

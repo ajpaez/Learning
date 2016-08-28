@@ -10,7 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 
 import apr.jpa.dao.model.Geek;
@@ -28,6 +30,8 @@ public class App {
 		// System.out.println("isOpen? : " +
 		// EntityManagerFactorySingleton.INSTANCE.getEntityManager().isOpen());
 		persistPerson(EntityManagerFactorySingleton.INSTANCE.getEntityManager());
+		updatePerson(EntityManagerFactorySingleton.INSTANCE.getEntityManager());
+		deletePerson(EntityManagerFactorySingleton.INSTANCE.getEntityManager());
 		persistGeek(EntityManagerFactorySingleton.INSTANCE.getEntityManager());
 		addPhones(EntityManagerFactorySingleton.INSTANCE.getEntityManager());
 		createProject(EntityManagerFactorySingleton.INSTANCE.getEntityManager());
@@ -49,6 +53,11 @@ public class App {
 			idCard.setIssueDate(new Date());
 			person.setIdCard(idCard);
 			entityManager.persist(idCard);
+
+			person = new Person();
+			person.setFirstName("Bart");
+			person.setLastName("Simpson");
+			entityManager.persist(person);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction.isActive()) {
@@ -101,6 +110,47 @@ public class App {
 		transaction.commit();
 	}
 
+	private static void updatePerson(EntityManager entityManager) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+		// create update
+		CriteriaUpdate<Person> update = cb.createCriteriaUpdate(Person.class);
+
+		// set the root class
+		Root<Person> e = update.from(Person.class);
+
+		// set update and where clause
+		update.set("firstName", "Homer Jay");
+		update.where(cb.like(e.get("firstName"), "Homer"));
+
+		// perform update
+		entityManager.createQuery(update).executeUpdate();
+		transaction.commit();
+	}
+
+	private static void deletePerson(EntityManager entityManager) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+		// create delete
+		CriteriaDelete<Person> delete = cb.createCriteriaDelete(Person.class);
+
+		// set the root class
+		Root<Person> e = delete.from(Person.class);
+
+		// set where clause
+		delete.where(cb.like(e.get("firstName"), "Bart"));
+
+		// perform update
+		entityManager.createQuery(delete).executeUpdate();
+		transaction.commit();
+	}
+
 	private static void createProject(EntityManager entityManager) {
 		List<Geek> resultList = entityManager
 				.createQuery("from Geek where favouriteProgrammingLanguage = :fpl", Geek.class)
@@ -145,11 +195,11 @@ public class App {
 			}
 			IdCard idCard = person.getIdCard();
 			if (idCard != null) {
-				sb.append(" ").append(idCard.getIdNumber()).append(" ").append(idCard.getIssueDate());
+				sb.append(" idCard: ").append(idCard.getIdNumber()).append(" ").append(idCard.getIssueDate());
 			}
 			List<Phone> phones = person.getPhones();
 			for (Phone phone : phones) {
-				sb.append(" ").append(phone.getNumber());
+				sb.append(" phone: ").append(phone.getNumber());
 			}
 			LOGGER.info(sb.toString());
 		}
