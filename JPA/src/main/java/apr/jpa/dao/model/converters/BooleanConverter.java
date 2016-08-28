@@ -4,6 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter
+// implements AttributeConverter<Valor JAVA, Valor BD>
 public class BooleanConverter implements AttributeConverter<Boolean, Integer> {
 
 	@Override

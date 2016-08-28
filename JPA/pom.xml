@@ -13,6 +13,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version>4.3.8.Final</hibernate.version>
+		<version.commons_codec>1.9</version.commons_codec>
 	</properties>
 
 	<dependencies>
@@ -40,6 +41,12 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		
+		 <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${version.commons_codec}</version>
+        </dependency>
 
 	</dependencies>
 </project>
