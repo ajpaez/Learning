@@ -38,6 +38,10 @@ import javax.persistence.Table;
  * 
  */
 @DiscriminatorColumn(name = "PERSON_TYPE", discriminatorType = DiscriminatorType.STRING)
+/**
+ * indica que esta entidad puede ser cacheada, depende de la configuracion en persistence.xml
+ */
+// @Cacheable(true)
 public class Person {
 
 	@Id

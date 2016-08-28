@@ -1,0 +1,47 @@
+
+1. Caching in Hibernate
+1.1 Intro
+Hibernate es un framework de persistencia que hace uso de una memoria cache propia para
+persistir los datos desde el entorno JAVA a la BD.
+La cache de Hibernate ayuda a reducir el número de llamadas que se realizan a la BD.
+Entitys se almacenan en la memoria cache de Hibernate, la cual contiene los valores actualizados.
+
+1.2 Tipos de cache
+Existen dos tipos de cache, la cache de primer nivel y la de segundo.
+	-La cache de primer nivel: está activa por defecto para la sesion actual.
+	-La cache de segundo nivel no esta activa por defecto y esta disponible en el 
+	nivel de sessionFactory, por lo que los datos de cache estan disponibles a nivel
+	global para todas las sesiones creadas usando el mismo objeto sessionFactory en
+	la aplicación. La cache de segundo nivel necesita ser activada de forma explicita
+Por tanto, una vez que se el objeto sessionFctory es cerrado, todos los datos de sesión
+se limpian.
+
+Existen diferentes proveedores que proporcionan una implementación para la cache de
+segundo nivel de Hibernate. Los más populares son: EH Cache, Swarm Cache, OS Cache, JBoss Cache.
+
+1.3 ¿Cómo funciona la cache de segundo nivel?
+	1- Siempre que cargamos una entidad en Hibernate, la copia en caché de la 
+	entidad se busca en el primer nivel de caché de la sesión actual.
+	2- Si la entidad es encontrada en el primer nivel de cache, se devuelve correctamente.
+	3- Si la entidad no es encontrada en el primer nivel de cache, se busca en la caché de segundo nivel.
+	4- Si la entidad es encontrada en el segundo nivel, la entidad se devuelve como resultado del 
+	método llamado, mientras se almacena la entidad en el primer nivel de caché, para un 
+	mejor rendimiento en las llamadas posteriores.
+	5- Si no se encuentra en la caché de segundo nivel también, se ejecuta la consulta a la
+	base de datos, y la entidad cargado se almacena en caché, en los dos niveles.
+
+La cache de segundo nivel es invalidada (inservible) y actualizada cada vez que una entidad se actualiza/elimina
+a través de Hibernate. Sin embargo, si la BD es actualizada directamente sin la intervención
+de Hibernate, la cache de segundo nivel no es invalidada hasta que no se alcanza la duración de timteToLiveSeconds
+Alternativamente, podemos invalidar la cache de segundo nivel de forma explícita con: sessionFactory.evictEntity(entityName); 
+
+2 EhCache como implementación de cache de segundo nivel
+	1- Lo primero, necesitamos la dependencia de la implementación.
+	2- Añadimos la configuración de Hibernate y de  ehCache
+	
+ 
+ 
+ ***NOTA*** : En lugar de esta cache, podemos usar la cache nativa de JPA
+ http://www.developer.com/java/using-second-level-caching-in-a-jpa-application.html
+
+

@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.persistence.Cache;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
@@ -203,6 +204,15 @@ public class App {
 			}
 			LOGGER.info(sb.toString());
 		}
+	}
+
+	private static void checkCacheJPA(EntityManager entityManager) {
+		Cache cache = entityManager.getEntityManagerFactory().getCache();
+		Person person = new Person();
+		person.setFirstName("Homer");
+		person.setLastName("Simpson");
+		System.out.println("cache.contain? : " + cache.contains(Person.class, person.getFirstName()));
+		cache.evict(Person.class);
 	}
 
 	private static Date createDate(int day, int month, int year) {

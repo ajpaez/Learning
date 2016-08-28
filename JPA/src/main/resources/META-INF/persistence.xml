@@ -8,6 +8,17 @@
         </description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
+		<!-- Enable second level cache -->
+		<!-- Posibles valores
+			ALL 				-> All entities are cached
+			NONE 				-> Disable caching
+			ENABLE_SELECTIVE 	-> Enable caching only for those entities which has @Cacheable(true)
+			DISABLE_SELECTIVE 	-> Enable caching only for those entities which are not specified with @Cacheable(false)
+			UNSPECIFIED 		-> Applies persistence provider-specific default behavior
+		 -->
+		
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/testjpadb"/>
@@ -20,6 +31,7 @@
             <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create" />
+            
         </properties>
 
 
