@@ -2,8 +2,16 @@
 
 ForkJoin Pool
 
-ForkJoin Pool fue introducido con Java 8 para permitir los streams paralelos, entre otros. 
+ForkJoin Pool fue introducido con Java 7 y en Java 8 para permitir los streams paralelos, entre otros. 
 ForkJoin está basado en computación paralela, donde un problema es dividido en varios sub-problemas bastantes simples de resolver simultaneamente en hilos sepasador, cuyos resultados despues serán reagrupados.
+Es es similar a la interfaz Executor pero con una diferencia, ForkjoinPools actúan de manera recursiva, a diferencia de los threads de Executor. ForkJoinPool divide la tarea en tareas más pequeñas, y esas tareas más pequeñas se dividen de nuevo en subtareas hasta que cada subtarea es atómica. Esto permite que funcione recursivamente.
+
+![enter image description here](https://dzone.com/storage/temp/2808176-image1.jpeg)
+
+Existen dos concetos basicos en esta clase:
+
+* Fork: Divida la tarea más grande en tareas más pequeñas.
+* Join: Obtener resultados de subtareas inmediatas.
 
 El algoritmos que se ha utilizado en las implementaciones de ForkJoin es el [Work-Stealing Algorithm](https://en.wikipedia.org/wiki/Work_stealing) con el fin de garantizar que la CPU no este ociosa.
 

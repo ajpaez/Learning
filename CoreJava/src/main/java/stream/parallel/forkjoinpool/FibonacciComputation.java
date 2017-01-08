@@ -1,4 +1,4 @@
-package stream.parallel;
+package stream.parallel.forkjoinpool;
 
 import java.util.concurrent.RecursiveTask;
 
