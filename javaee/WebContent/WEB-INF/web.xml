@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+
+	<servlet>
+		<display-name>My JAX-RS Servlet</display-name>
+		<servlet-name>ServletMain</servlet-name>
+		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.apr.javaee.rest.application.MiApplication</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletMain</servlet-name>
+		<url-pattern>/rest</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>RequestLoggingFilter</filter-name> <!-- mandatory -->
+		<filter-class>com.apr.javaee.rest.filter.RequestLoggingFilter</filter-class> <!-- mandatory -->
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>RequestLoggingFilter</filter-name> <!-- mandatory -->
+		<url-pattern>/*</url-pattern> <!-- either url-pattern or servlet-name is mandatory -->
+		<servlet-name>ServletMain</servlet-name>
+		<!-- https://docs.oracle.com/cd/E19575-01/819-3669/bnagf/index.html -->
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+
+</web-app>
