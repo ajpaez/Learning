@@ -10,11 +10,22 @@ import com.apr.javaee.rest.controller.SesionController;
 
 public class MiApplication extends Application {
 
+	private Set<Object> singletons = new HashSet<Object>();
+	private Set<Class<?>> classes = new HashSet<Class<?>>();
+
+	public MiApplication() {
+		// singletons.add(new CustomerResource());
+		classes.add(SaludosController.class);
+		classes.add(SesionController.class);
+	}
+
+	@Override
+	public Set<Object> getSingletons() {
+		return singletons;
+	}
+
 	@Override
 	public Set<Class<?>> getClasses() {
-		Set<Class<?>> s = new HashSet<Class<?>>();
-		s.add(SaludosController.class);
-		s.add(SesionController.class);
-		return s;
+		return classes;
 	}
 }
