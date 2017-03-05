@@ -6,8 +6,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 
+import com.apr.javaee.rest.filter.LoggingFilterBinding;
+
 @Path("login")
 @Produces({ "text/xml", "application/json" })
+@LoggingFilterBinding
 public class SesionController {
 
 	@Context
@@ -18,8 +21,10 @@ public class SesionController {
 	public String lowerCase() {
 
 		// get request parameters for userID and password
-		String user = httpRequest.getParameter("user");
-		String pwd = httpRequest.getParameter("pwd");
+		final String user = httpRequest.getParameter("user");
+		final String pwd = httpRequest.getParameter("pwd");
+
+		System.out.println("user: " + user + " pwd: " + pwd);
 
 		return "Hi REST @POST!".toLowerCase();
 	}
