@@ -1,6 +1,7 @@
 package com.apr.javaee.rest.controller;
 
 import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -35,6 +36,12 @@ public class SaludosController {
 	@Path("hola")
 	public String lowerCase(final String message) {
 		return "Hi REST @POST!".toLowerCase();
+	}
+
+	@GET
+	@Path("name")
+	public String messageName2(@NotNull @PathParam("name") String name) {
+		return "Hi " + name + " REST @GET!";
 	}
 
 }
