@@ -1,4 +1,4 @@
-package com.apr.javaee.rest.validator;
+package com.apr.javaee.rest.excepctionmapper;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -15,7 +15,7 @@ public class BeanValidatorExceptionMapper implements ExceptionMapper<ConstraintV
 
 		ConstraintViolation cv = (ConstraintViolation) e.getConstraintViolations().toArray()[0];
 
-		return Response.status(Response.Status.PAYMENT_REQUIRED).build();
+		return Response.status(Response.Status.PRECONDITION_FAILED).build();
 	}
 
 }

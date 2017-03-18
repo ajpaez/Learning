@@ -8,11 +8,14 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.apr.javaee.beans.stateless.CalculatorBean;
+import com.apr.javaee.rest.model.Car;
 
-@Path("saludos")
-@Produces({ "text/xml", "application/json" })
+//rest
+@Path("saludos") // <- Root Resource
 public class SaludosController {
 
 	@Inject
@@ -20,9 +23,22 @@ public class SaludosController {
 
 	@GET
 	@Path("hola")
-	public String message() {
+	public Response messageGet() {
 		System.out.println(calculatorBean.add(1, 3));
-		return "Hi REST @GET!";
+		return Response.status(Response.Status.OK).entity(new String("Hi REST @GET!")).build();
+	}
+
+	@GET
+	@Path("car")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response car() {
+		return Response.status(Response.Status.OK).entity(new Car("5", "3")).build();
+	}
+
+	@POST
+	@Path("hola")
+	public String messagePost(final String message) {
+		return "Hi REST @POST!".toLowerCase();
 	}
 
 	@GET
@@ -32,15 +48,9 @@ public class SaludosController {
 		return "Hi " + name + " REST @GET!";
 	}
 
-	@POST
-	@Path("hola")
-	public String lowerCase(final String message) {
-		return "Hi REST @POST!".toLowerCase();
-	}
-
 	@GET
 	@Path("name")
-	public String messageName2(@NotNull @PathParam("name") String name) {
+	public String messageNameMandatory(@NotNull @PathParam("name") String name) {
 		return "Hi " + name + " REST @GET!";
 	}
 

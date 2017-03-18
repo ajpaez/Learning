@@ -5,12 +5,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 
 import com.apr.javaee.rest.filter.LoggingFilterBinding;
 
+//rest
 @Path("login")
-@Produces({ "text/xml", "application/json" })
-@LoggingFilterBinding
 public class SesionController {
 
 	@Context
@@ -18,6 +18,7 @@ public class SesionController {
 
 	@POST
 	@Path("do")
+	@LoggingFilterBinding
 	public String lowerCase() {
 
 		// get request parameters for userID and password
