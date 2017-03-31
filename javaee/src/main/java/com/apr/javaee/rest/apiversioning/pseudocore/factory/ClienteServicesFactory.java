@@ -1,9 +1,9 @@
-package com.apr.javaee.rest.apiversioning.factory;
+package com.apr.javaee.rest.apiversioning.pseudocore.factory;
 
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
-import com.apr.javaee.rest.apiversioning.services.ClienteServices;
+import com.apr.javaee.rest.apiversioning.pseudocore.service.ClienteServices;
 
 public class ClienteServicesFactory {
 

@@ -1,4 +1,4 @@
-package com.apr.javaee.rest.apiversioning.services;
+package com.apr.javaee.rest.apiversioning.pseudocore.service;
 
 import java.util.List;
 

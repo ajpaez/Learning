@@ -9,8 +9,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.apr.javaee.rest.apiversioning.factory.ClienteServicesFactory;
-import com.apr.javaee.rest.apiversioning.services.ClienteServices;
+import com.apr.javaee.rest.apiversioning.pseudocore.factory.ClienteServicesFactory;
+import com.apr.javaee.rest.apiversioning.pseudocore.service.ClienteServices;
 
 @Stateless
 @Path("/{ver}/clientes")

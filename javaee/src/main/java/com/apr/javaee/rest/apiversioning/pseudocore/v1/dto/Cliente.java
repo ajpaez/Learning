@@ -1,4 +1,4 @@
-package com.apr.javaee.rest.apiversioning.v1.dto;
+package com.apr.javaee.rest.apiversioning.pseudocore.v1.dto;
 
 public class Cliente {
 

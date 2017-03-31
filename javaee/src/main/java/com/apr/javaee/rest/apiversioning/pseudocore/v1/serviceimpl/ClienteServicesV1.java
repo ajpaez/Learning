@@ -1,10 +1,10 @@
-package com.apr.javaee.rest.apiversioning.v1.services;
+package com.apr.javaee.rest.apiversioning.pseudocore.v1.serviceimpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.apr.javaee.rest.apiversioning.services.ClienteServices;
-import com.apr.javaee.rest.apiversioning.v1.dto.Cliente;
+import com.apr.javaee.rest.apiversioning.pseudocore.service.ClienteServices;
+import com.apr.javaee.rest.apiversioning.pseudocore.v1.dto.Cliente;
 
 public class ClienteServicesV1 implements ClienteServices {
 
