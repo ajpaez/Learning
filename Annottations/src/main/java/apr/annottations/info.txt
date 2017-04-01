@@ -72,7 +72,7 @@ Las anotaciones pueden ser usadas basicamente en la mayoria de los elementod de 
 programas de Java: clases, propiedades, metodos, paquetes, variables, etc.
 Desde Java 8 el concepto de anotacion por tipo esta disponible. Lo que permite:
 
-	@MyAnnotation String str = "danibuiza";
+	@MyAnnotation String str = "mistr";
 
 6. Casos de uso.
 Las anotaciones se pueden utilizar para muchos propósitos diferentes, los más comunes son:
