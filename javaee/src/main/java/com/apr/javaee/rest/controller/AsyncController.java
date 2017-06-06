@@ -4,7 +4,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.enterprise.concurrent.ManagedExecutorService;
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,6 +17,8 @@ import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.apr.javaee.cdi.inject.concurrent.MyRunnable;
+
 //rest
 @Stateless
 @Path("async")
@@ -20,6 +26,10 @@ import javax.ws.rs.core.Response;
 public class AsyncController {
 
 	private final ExecutorService executorService = Executors.newCachedThreadPool();
+	@Resource
+	ManagedExecutorService managedExecutorService;
+	@Inject
+	Instance<MyRunnable> myTaskInstance;
 
 	@GET
 	@Path("longtask")
@@ -42,6 +52,20 @@ public class AsyncController {
 			}
 		};
 		executorService.execute(longRunningDeptQuery);
+
+	}
+
+	@GET
+	@Path("concurrent")
+	public Response checkConcurrentCdi() {
+
+		for (int i = 0; i < 10; i++) {
+			MyRunnable myTask = myTaskInstance.get();
+			myTask.setName(String.valueOf(i));
+			managedExecutorService.submit(myTask);
+		}
+
+		return Response.status(Response.Status.OK).build();
 
 	}
 

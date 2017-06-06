@@ -3,7 +3,6 @@ package com.apr.javaee.cdi.produces;
 import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 
 import com.apr.javaee.cdi.produces.impl.ConsoleHandler;
@@ -35,8 +34,8 @@ public class LogFactory implements Serializable {
 	}
 
 	// TODO: revisar porque no funciona
-	public void closeLogger(@Disposes LogHandler logger) {
-		logger.close();
-	}
+	/*
+	 * public void closeLogger(@Disposes LogHandler logger) { logger.close(); }
+	 */
 
 }
