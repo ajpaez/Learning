@@ -5,7 +5,6 @@ import com.apr.learning.hibernate.entity.Course;
 import com.apr.learning.hibernate.entity.Review;
 import com.apr.learning.hibernate.entity.ReviewRating;
 import com.apr.learning.hibernate.entity.Student;
-import net.bytebuddy.TypeCache;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -20,7 +19,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;

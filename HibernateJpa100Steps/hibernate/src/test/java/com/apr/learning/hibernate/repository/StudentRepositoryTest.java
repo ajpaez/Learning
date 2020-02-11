@@ -1,8 +1,8 @@
 package com.apr.learning.hibernate.repository;
 
 import com.apr.learning.hibernate.HibernateApplication;
-import com.apr.learning.hibernate.entity.*;
-import com.apr.learning.hibernate.entity.Student;
+import com.apr.learning.hibernate.entity.Course;
+import com.apr.learning.hibernate.entity.Passport;
 import com.apr.learning.hibernate.entity.Student;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = HibernateApplication.class)
@@ -88,6 +87,22 @@ class StudentRepositoryTest {
         assertEquals(studentSaved.getName(), "Tony");
 
         Passport passport2 = passportRepository.findById(student.getId());
+        assertNotNull(passport2);
+        assertEquals("ABC789", passport2.getNumber());
+    }
+
+    @Test
+    @Transactional
+    @DirtiesContext
+    void updatePassportTest() {
+        Student student = studentRepository.findById(20001L);
+        assertEquals("Ranga", student.getName());
+        Passport passport = new Passport("ABC789");
+        passport.setStudent(student);
+        Passport passportSaved = passportRepository.save(passport);
+
+
+        Passport passport2 = passportRepository.findById(passportSaved.getId());
         assertNotNull(passport2);
         assertEquals("ABC789", passport2.getNumber());
     }
