@@ -15,6 +15,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/*
+ * Spring Boot configures Hibernate as the default JPA provider, so it's no longer necessary to define the
+ * entityManagerFactory bean unless we want to customize it.
+ */
+
 @Repository
 @Transactional
 public class CourseRepository {

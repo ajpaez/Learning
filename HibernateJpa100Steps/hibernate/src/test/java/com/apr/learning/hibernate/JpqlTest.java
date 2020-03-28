@@ -106,7 +106,7 @@ public class JpqlTest {
     }
 
     @Test
-    void findAllCoursesWithtStudentsByJoinGoodReviewTest() {
+    void findAllCoursesWithStudentsByJoinGoodReviewTest() {
         Query query = entityManager.createQuery("Select c, s From Course c JOIN c.students s");
         List<Object[]> resultList = query.getResultList();
         logger.info("Result size-> {}", resultList.size());
@@ -119,7 +119,7 @@ public class JpqlTest {
     }
 
     @Test
-    void findAllCoursesWithtStudentsByLeftJoinGoodReviewTest() {
+    void findAllCoursesWithStudentsByLeftJoinGoodReviewTest() {
         Query query = entityManager.createQuery("Select c, s From Course c LEFT JOIN c.students s");
         List<Object[]> resultList = query.getResultList();
         logger.info("Result size-> {}", resultList.size());

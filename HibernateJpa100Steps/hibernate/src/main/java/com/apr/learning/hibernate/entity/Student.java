@@ -31,6 +31,12 @@ public class Student {
     protected Student() {
     }
 
+    public Student(Long id, String name) {
+        this.id = id;
+        this.name = name;
+        this.courses = new HashSet<>();
+    }
+
     public Student(String name) {
         this.name = name;
         this.courses = new HashSet<>();
